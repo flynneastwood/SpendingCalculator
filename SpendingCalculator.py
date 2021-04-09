@@ -8,22 +8,26 @@ try:
 except:
     pass
 # -- End Windows only configuration --
-
-names = ("Antoine", "Alyssa")
-
-def ajouter_depense(*args):
-	try:
-		depenseInfo = string(info_value.get())
-		depensePrix = string(prix_value.get())
-		depenseNom = string(selNames.get())
-	except ValueError:
-		pass
-
-
 root = tk.Tk()
 ttk.Label(root, text="Spending Calculator", padding=(50, 10)).pack()
 
-depense_value = tk.StringVar()
+names = ("Antoine", "Alyssa")
+
+info_value = tk.StringVar()
+prix_value = tk.StringVar()
+
+def ajouter_depense(*args):
+	try:
+		depenseInfo = (info_value.get())
+		depensePrix = (prix_value.get())
+		depenseNom = selNames_select.get(selNames_select.curselection())
+		
+		print(f"Depense:{depensePrix} Info:{depenseInfo} Nom:{depenseNom}.")
+
+	except ValueError:
+		print("Value error")
+
+
 
 
 # -- Text widgets pour prix et info --
@@ -49,7 +53,7 @@ selNames_select["selectmode"] = "browse"
 
 # -- Bouton Ajout Dépense --
 
-send_button = ttk.Button(root, text="Ajouter dépense")
+send_button = ttk.Button(root, text="Ajouter dépense", command=ajouter_depense)
 send_button.pack()
 
 main_sep = ttk.Separator(root, orient="horizontal")
