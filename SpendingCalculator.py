@@ -24,7 +24,9 @@ def ajouter_depense(*args):
 		depensePrix = (prix_value.get())
 		depenseNom = selNames_select.get(selNames_select.curselection())
 
-		if len(depenseInfo) & len(depensePrix) <= 0:
+		if len(depenseInfo) <= 0:
+			return
+		elif len(depensePrix) <= 0:
 			return
 		else:
 			pass
@@ -34,6 +36,9 @@ def ajouter_depense(*args):
 
 		depenses_textbox = tk.Label(root, text="", textvariable=output, height=1)
 		depenses_textbox.pack()
+
+		info_input.delete(0)
+		prix_label_input.delete(0)
 		
 	except ValueError:
 		print("Value error")
