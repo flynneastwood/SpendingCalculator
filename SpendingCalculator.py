@@ -11,19 +11,30 @@ except:
 root = tk.Tk()
 ttk.Label(root, text="Spending Calculator", padding=(50, 10)).pack()
 
-names = ("Antoine", "Alyssa")
+names = ( "Alyssa","Antoine")
 
 info_value = tk.StringVar()
 prix_value = tk.StringVar()
+output = tk.StringVar()
+
 
 def ajouter_depense(*args):
 	try:
 		depenseInfo = (info_value.get())
 		depensePrix = (prix_value.get())
 		depenseNom = selNames_select.get(selNames_select.curselection())
-		
-		print(f"Depense:{depensePrix} Info:{depenseInfo} Nom:{depenseNom}.")
 
+		if len(depenseInfo) & len(depensePrix) <= 0:
+			return
+		else:
+			pass
+
+		
+		output.set(f"{depensePrix}  {depenseInfo} {depenseNom}")
+
+		depenses_textbox = tk.Label(root, text="", textvariable=output, height=1)
+		depenses_textbox.pack()
+		
 	except ValueError:
 		print("Value error")
 
@@ -47,6 +58,7 @@ prix_label_input.pack()
 
 selNames = tk.StringVar(value=names)
 selNames_select = tk.Listbox(root, listvariable=selNames, height=2)
+selNames_select.select_set(0)
 selNames_select.pack(padx=10, pady=10)
 
 selNames_select["selectmode"] = "browse"
@@ -64,12 +76,6 @@ main_sep.pack(fill="x", pady=10)
 depenses_label = ttk.Label(root, text="Dépenses")
 depenses_label.pack()
 
-depenses_textbox = tk.Text(root, height=8)  # Show what happens if you `.pack()` here, while still assigning to variable.
-depenses_textbox.pack()
-
-
-main_sep = ttk.Separator(root, orient="horizontal")
-main_sep.pack(fill="x", pady=10)
 
 
 root.mainloop()
