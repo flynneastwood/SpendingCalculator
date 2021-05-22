@@ -32,10 +32,16 @@ def ajouter_depense(*args):
 			pass
 
 		
-		output.set(f"{depensePrix}  {depenseInfo} {depenseNom}")
+		output.set(str(f"{depensePrix}  {depenseInfo} {depenseNom}"))
 
-		depenses_textbox = tk.Label(root, text="", textvariable=output, height=1)
-		depenses_textbox.pack()
+		depenses = []
+
+		depenses.append(str(output))
+
+		for i in depenses:
+			depenses_textbox = tk.Label(root, text="", textvariable=depenses[len(depenses)-1], height=1)
+			depenses_textbox.pack()
+
 
 		info_input.delete(0)
 		prix_label_input.delete(0)
